@@ -1,0 +1,6 @@
+
+Fix proprietary-blobs.txt first!!!
+
+Now ensure that your Lenovo A328 is connected to your computer via the USB cable and that you are in the ~/android/system/device/lenovo/a328 directory (you can cd ~/android/system/device/lenovo/a328 if necessary). Then run the extract-files.sh script:
+
+$ ./extract-files.sh

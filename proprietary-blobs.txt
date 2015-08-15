@@ -1,0 +1,286 @@
+# MediaTek blobs
+
+# WiFi and gsm firmware's /system/etc/firmware/*
+
+# wmt_loader init kernel device modules, and loades a driver for /dev/stpwmt, then
+# 6620_launcher load a firmware to the CPU using /dev/stpwmt.
+# mt6572_82_patch_e1_0_hdr.bin, mt6572_82_patch_e1_1_hdr.bin - wifi firmware.
+
+# gralloc && hwcomposer - hardware layer. Rest is userspace lib.so layer.
+
+# ccci_mdinit starts, depends on additional services:
+# - drvbd - unix socket connection
+# - nvram - folders /data/nvram, modem settings like IMEI
+# - gsm0710muxd - /dev/radio/ ports for accessing the modem 
+# - mdlogger
+# - ccci_fsd
+
+# ccci_mdinit loads modem_1_wg_n.img firmware to the CPU, waits for NVRAM to init using ENV variable.
+# then starts the modem CPU. on success starts rest services mdlogger, gsm0710muxd ...
+# Fix these and run ./extract-files.sh
+
+# ETC dir
+etc/firmware/catcher_filter_1_wg_n.bin
+etc/firmware/modem_1_wg_n.img
+etc/firmware/mt6572_82_patch_e1_0_hdr.bin
+etc/firmware/mt6572_82_patch_e1_1_hdr.bin
+etc/firmware/S_ANDRO_SFL.ini
+etc/firmware/WIFI_RAM_CODE
+etc/firmware/WIFI_RAM_CODE_E6
+etc/firmware/WIFI_RAM_CODE_MT6582
+etc/firmware/WIFI_RAM_CODE_MT6628
+etc/firmware/WMT_SOC.cfg
+etc/firmware/mt6627/mt6627_fm_v1_coeff.bin
+etc/firmware/mt6627/mt6627_fm_v1_patch.bin
+etc/firmware/mt6627/mt6627_fm_v2_coeff.bin
+etc/firmware/mt6627/mt6627_fm_v2_patch.bin
+etc/firmware/mt6627/mt6627_fm_v3_coeff.bin
+etc/firmware/mt6627/mt6627_fm_v3_patch.bin
+etc/firmware/mt6627/mt6627_fm_v4_coeff.bin
+etc/firmware/mt6627/mt6627_fm_v4_patch.bin
+etc/firmware/mt6627/mt6627_fm_v5_coeff.bin
+etc/firmware/mt6627/mt6627_fm_v5_patch.bin
+
+# Vendor dir
+vendor/lib/hw/audio.a2dp.blueangel.so
+vendor/lib/hw/bluetooth.blueangel.so
+vendor/lib/mediadrm/libwvdrmengine.so
+vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/libWVStreamControlAPI_L3.so
+vendor/lib/libwvdrm_L3.so
+vendor/lib/libwvm.so
+vendor/media/LMspeed_508.emd
+vendor/media/PFFprec_600.emd
+
+# OMX
+lib/libMtkOmxCore.so
+lib/libMtkOmxVdec.so
+lib/libMtkOmxVenc.so
+lib/libMtkOmxAacDec.so
+lib/libMtkOmxAacEnc.so
+lib/libMtkOmxAmrEnc.so
+lib/libMtkOmxApeDec.so
+lib/libMtkOmxAwbEnc.so
+lib/libMtkOmxGsmDec.so
+lib/libMtkOmxMp3Dec.so
+lib/libMtkOmxRawDec.so
+lib/libMtkOmxFlacDec.so
+lib/libMtkOmxG711Dec.so
+lib/libMtkOmxAdpcmDec.so
+lib/libMtkOmxAdpcmEnc.so
+lib/libMtkOmxAMRNBDec.so
+lib/libMtkOmxAMRWBDec.so
+lib/libMtkOmxVorbisDec.so
+lib/libMtkOmxVorbisEnc.so
+# Stagefright
+lib/libstagefrighthw.so
+#lib/libstagefright_amrnb_common.so
+#lib/libstagefright_avc_common.so
+#lib/libstagefright_chromium_http.so
+#lib/libstagefright_enc_common.so
+#lib/libstagefright_foundation.so
+#lib/libstagefright_httplive.so
+#lib/libstagefright_memutil.so
+#lib/libstagefright_omx.so
+#lib/libstagefright.so
+#lib/libstagefright_soft_aacdec.so
+#lib/libstagefright_soft_aacenc.so
+#lib/libstagefright_soft_amrdec.so
+#lib/libstagefright_soft_amrnbenc.so
+#lib/libstagefright_soft_amrwbenc.so
+#lib/libstagefright_soft_flacenc.so
+#lib/libstagefright_soft_g711dec.so
+#lib/libstagefright_soft_gsmdec.so
+#lib/libstagefright_soft_h264dec.so
+#lib/libstagefright_soft_h264enc.so
+#lib/libstagefright_soft_mp3dec.so
+#lib/libstagefright_soft_mpeg4dec.so
+#lib/libstagefright_soft_mpeg4enc.so
+#lib/libstagefright_soft_rawdec.so
+#lib/libstagefright_soft_vorbisdec.so
+#lib/libstagefright_soft_vpxdec.so
+#lib/libstagefright_soft_vpxenc.so
+#lib/libstagefright_wfd.so
+#lib/libstagefright_yuv.so
+lib/libcustom_prop.so
+lib/libdrmmtkutil.so
+lib/libdrmmtkwhitelist.so
+
+# WiFi
+bin/6620_launcher
+bin/6620_wmt_concurrency
+bin/6620_wmt_lpbk
+bin/wmt_loader
+bin/wlan_loader
+
+# GPU, GL, HW
+lib/hw/lights.default.so
+lib/hw/hwcomposer.mt6582.so
+lib/hw/gralloc.mt6582.so
+lib/egl/libEGL_mali.so
+lib/egl/libGLESv1_CM_mali.so
+lib/egl/libGLESv2_mali.so
+lib/libMali.so
+lib/libm4u.so
+lib/libion.so
+lib/libdpframework.so
+lib/libcutils.so
+
+# Ril
+bin/rild
+bin/rildmd2
+lib/mtk-ril.so
+lib/mtk-rilmd2.so
+lib/librilmtk.so
+lib/libaed.so
+lib/libreference-ril.so
+bin/nvram_daemon
+bin/nvram_agent_binder
+lib/libnvram.so
+lib/libcustom_nvram.so
+lib/libnvram_sec.so
+lib/libhwm.so
+lib/libnvram_platform.so
+lib/libfile_op.so
+lib/libnvram_daemon_callback.so
+lib/libmtk_drvb.so
+bin/gsm0710muxd
+bin/gsm0710muxdmd2
+bin/ccci_mdinit
+bin/drvbd
+bin/aee_aed
+bin/aee
+bin/mdlogger
+bin/dualmdlogger
+bin/emcsmdlogger
+lib/libmdloggerrecycle.so
+bin/ccci_fsd
+bin/muxreport
+bin/permission_check
+bin/pppd
+bin/pppd_dt
+#lib/libcurl.so####isn't exist
+
+# Camera
+lib/hw/camera.default.so
+lib/libcam.camadapter.so
+lib/libcam.campipe.so
+lib/libcam.camshot.so
+lib/libcam.client.so
+lib/libcam.device1.so
+lib/libcam.exif.so
+lib/libcam.paramsmgr.so
+lib/libcam.utils.sensorlistener.so
+lib/libcam.utils.so
+lib/libcamalgo.so
+lib/libcamdrv.so
+lib/libcamera_client.so
+lib/libcameracustom.so
+lib/libcamera_metadata.so
+lib/libcameraservice.so
+lib/libcam_hwutils.so
+lib/libcam_mmp.so
+lib/libcam_platform.so
+lib/libcam_utils.so
+
+# GPS
+bin/mtk_agpsd
+#lib/hw/gps.default.so
+xbin/mnld
+
+# Audio
+#bin/audiocmdservice_atci
+lib/libaudio.primary.default.so
+lib/hw/audio_policy.default.so
+lib/hw/libaudio.r_submix.default.so
+lib/libblisrc.so
+lib/libspeech_enh_lib.so
+lib/libaudiocustparam.so
+lib/libaudiosetting.so
+lib/libaudiocompensationfilter.so
+lib/libbessound_mtk.so
+lib/libcvsd_mtk.so
+lib/libmsbc_mtk.so
+lib/libaudiocomponentengine.so
+lib/libblisrc32.so
+lib/libbessound_hd_mtk.so
+lib/libmtklimiter.so
+lib/libmtkshifter.so
+lib/libaudiodcrflt.so
+lib/libbluetoothdrv.so
+#lib/soundfx/libaudiopreprocessing.so
+
+# Sensors
+lib/hw/sensors.default.so
+bin/msensord
+bin/s62xd
+bin/ami304d
+bin/memsicd
+bin/memsicd3416x
+bin/akmd8975
+bin/akmd8963
+bin/akmd09911
+bin/bmm050d
+bin/mc6420d
+bin/qmc5983d
+bin/orientationd
+bin/geomagneticd
+
+# Swap
+bin/tiny_mkswap
+bin/tiny_swapon
+
+# Fixes
+lib/hw/power.default.so
+bin/sn
+bin/thermal_manager
+lib/lib3a.so
+lib/libAGifEncoder.so
+lib/libbluetooth_mtk.so
+lib/libbwc.so
+lib/libfeatureio.so
+lib/libimageio.so
+lib/libimageio_plat_drv.so
+lib/libJpgEncPipe.so
+lib/libmatv_cust.so
+lib/libmp4enc_sa.ca7.so
+lib/libmpo.so
+lib/libmpoencoder.so
+lib/libmtkjpeg.so
+lib/libmtkplayer.so
+lib/libMtkVideoTranscoder.so
+lib/libOpenMAXAL.so
+lib/libsched.so
+lib/libssladp.so
+lib/libvcodec_oal.so
+lib/libvcodec_utility.so
+
+bin/debuggerd
+bin/mobile_log_d
+#bin/featured
+#bin/atci_service
+bin/atcid
+bin/md_minilog_util
+#bin/aal
+bin/dhcpcd
+bin/dhcp6c
+#bin/launchpppoe
+bin/dm_agent_binder
+bin/ppl_agent
+#bin/vtservice
+#bin/bluetoothd
+bin/mtkbt
+#bin/emd_daemon
+#sbchk/sec_chk.sh
+bin/ipod
+#bin/extmdlogger
+bin/nvram_country
+bin/em_svr
+#bin/afm_server
+bin/thermal
+bin/thermald
+bin/nac_server
+#bin/logparser
+bin/gsensor_cali
+bin/terservice
+lib/libterservice.so
